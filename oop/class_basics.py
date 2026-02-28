@@ -2,6 +2,7 @@
 #instance variables, class variables
 #class methods and static methods
 #alternative constructor
+#Inheritance
 
 class Employee:
 
@@ -20,7 +21,7 @@ class Employee:
         return '{} {}'.format(self.first,self.last)
     
     def apply_raise(self):
-        self.pay = int(self.pay * self.raise_amount)
+        self.pay = int(self.pay * self.raise_amt)
 
     @classmethod
     def set_raise_amt(cls, amount):
@@ -31,20 +32,36 @@ class Employee:
         first, last, pay = emp_str.split('-')
         return cls(first, last, pay)
     
+    @staticmethod
+    def is_workday(day):
+        if day.weekday() == 5 or  day.weekday() == 6:
+            return False
+        return True
+
+class Developer(Employee):
+    pass
+
+class Manager(Employee):
+    pass
+
 emp_1 = Employee("Sreenath", "S" , 60000 )
 emp_2 = Employee("Ramesh" , "Satish", 50000)
 
-Employee.set_raise_amt(1.05)
+import datetime
+my_date = datetime.date(2026,2,27)
+print(Employee.is_workday(my_date))
 
-print(Employee.raise_amt)
-print(emp_1.raise_amt)
-print(emp_2.raise_amt)
+# Employee.set_raise_amt(1.05)
 
-emp_str_1 = 'John-Doe-70000'
-emp_str_2 = 'Sam-Toe-30000'
-emp_str_3 = 'Damn-Doo-20000'
+# print(Employee.raise_amt)
+# print(emp_1.raise_amt)
+# print(emp_2.raise_amt)
 
-new_emp_1 = Employee.from_str(emp_str_1)
+# emp_str_1 = 'John-Doe-70000'
+# emp_str_2 = 'Sam-Toe-30000'
+# emp_str_3 = 'Damn-Doo-20000'
 
-print(new_emp_1.email)
-print(new_emp_1.pay)
+# new_emp_1 = Employee.from_str(emp_str_1)
+
+# print(new_emp_1.email)
+# print(new_emp_1.pay)
